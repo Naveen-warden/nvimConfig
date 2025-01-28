@@ -9,3 +9,5 @@ require 'autocmds'
 
 local plugins = require 'plugins'
 require('lazy').setup(plugins)
+
+local feature = 'new feature'
