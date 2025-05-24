@@ -1,4 +1,3 @@
-
 -- return {
 --     'nvim-telescope/telescope.nvim',
 --     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -47,38 +46,41 @@
 -- }
 
 return {
-    'nvim-telescope/telescope.nvim',
-    dependencies = {
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope-media-files.nvim', -- Correct capitalization
-    },
-    tag = '0.1.6',
-    config = function()
-        local telescope = require('telescope')
+  'nvim-telescope/telescope.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope-media-files.nvim', -- Correct capitalization
+  },
+  tag = '0.1.6',
+  config = function()
+    local telescope = require 'telescope'
 
-        telescope.setup {
-            extensions = {
-                media_files = {
-                    filetypes = { "png", "jpg", "jpeg", "mp4", "webm", "pdf" },
-                    find_cmd = "rg", -- Use ripgrep to find media files
-                },
-            },
-        }
+    telescope.setup {
+      defaults = {
+        file_ignore_patterns = { 'node_modules', '%.git/' },
+      },
+      extensions = {
+        media_files = {
+          filetypes = { 'png', 'jpg', 'jpeg', 'mp4', 'webm', 'pdf' },
+          find_cmd = 'rg', -- Use ripgrep to find media files
+        },
+      },
+    }
 
-        -- Load the media_files extension
-        telescope.load_extension('media_files')
+    -- Load the media_files extension
+    telescope.load_extension 'media_files'
 
-        -- Set keymaps
-        local keymap = vim.keymap.set
-        keymap('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', { desc = 'Fuzzy find files in cwd' })
-        keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = 'Search for text in cwd' })
-        keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { desc = 'List open buffers' })
-        keymap('n', '<leader>fs', '<cmd>Telescope git_status<cr>', { desc = 'Find git status' })
-        keymap('n', '<leader>fc', '<cmd>Telescope git_commits<cr>', { desc = 'Find git commits' })
-        keymap('n', '<leader>mm', '<cmd>Telescope media_files<CR>', { desc = 'Find and preview media files' })
+    -- Set keymaps
+    local keymap = vim.keymap.set
+    keymap('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', { desc = 'Fuzzy find files in cwd' })
+    keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = 'Search for text in cwd' })
+    keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { desc = 'List open buffers' })
+    keymap('n', '<leader>fs', '<cmd>Telescope git_status<cr>', { desc = 'Find git status' })
+    keymap('n', '<leader>fc', '<cmd>Telescope git_commits<cr>', { desc = 'Find git commits' })
+    keymap('n', '<leader>mm', '<cmd>Telescope media_files<CR>', { desc = 'Find and preview media files' })
 
-        keymap('n', '/', function()
-            require('telescope.builtin').current_buffer_fuzzy_find()
-        end, { desc = 'Search in current buffer' })
-    end,
+    keymap('n', '/', function()
+      require('telescope.builtin').current_buffer_fuzzy_find()
+    end, { desc = 'Search in current buffer' })
+  end,
 }

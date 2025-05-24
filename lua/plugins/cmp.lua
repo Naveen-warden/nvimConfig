@@ -72,5 +72,22 @@ return {
       set completeopt=menuone,noinsert,noselect
       highlight! default link CmpItemKind CmpItemMenuDefault
     ]]
+
+    -- Configure diagnostic display settings
+    vim.diagnostic.config {
+      virtual_text = true, -- Disable inline virtual text
+      float = {
+        border = 'rounded', -- Options: 'single', 'double', 'rounded', 'solid', 'shadow'
+        focusable = false, -- Prevent focus on the floating window
+        style = 'minimal', -- Minimal style without line numbers
+        source = 'always', -- Show the source of the diagnostic
+        header = '', -- Optional header
+        prefix = '',
+      },
+    }
+
+    -- Show diagnostics in a floating window on hover
+    vim.o.updatetime = 250 -- Set update time for CursorHold
+    vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
   end,
 }

@@ -1,7 +1,7 @@
 vim.g.mapleader = ' '
 
 local function map(mode, lhs, rhs)
-  vim.keymap.set(mode, lhs, rhs, { silent = true })
+    vim.keymap.set(mode, lhs, rhs, { silent = true })
 end
 
 -- Save
@@ -46,11 +46,11 @@ map('n', 'L', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
 map('n', 'Q', ':bd!<CR>', { noremap = true, silent = true })
 
 map('n', '<leader>w', function()
-  local wrap = not vim.opt.wrap:get()
-  vim.opt.wrap = wrap
-  vim.opt.linebreak = wrap
-  vim.opt.breakindent = wrap
-  -- vim.opt.showbreak = "↪ "
-  vim.opt.breakindentopt = 'shift:2'
-  print('Wrap: ' .. (wrap and 'ON' or 'OFF'))
+    local wrap = not vim.opt.wrap:get()
+    vim.opt.wrap = wrap
+    vim.opt.linebreak = wrap
+    vim.opt.breakindent = wrap
+    -- vim.opt.showbreak = "↪ "
+    vim.opt.breakindentopt = 'shift:2'
+    print('Wrap: ' .. (wrap and 'ON' or 'OFF'))
 end, { desc = 'Toggle visual wrapping' })
